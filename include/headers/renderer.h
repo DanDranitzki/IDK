@@ -1,14 +1,13 @@
 #ifndef renderer_H
 #define renderer_H
-#include <headers/rawModel.h>
 #include <headers/shaderProgram.h>
-#include <headers/texture.h>
+#include <headers/entity.h>
 
 class Renderer{
     public:
         void init(Shader shader);
         void prepareRender();
-        void render(RawModel model, Texture texture, Shader shader);
+        void render(Entity entity, Shader shader);
 };
 
 #endif

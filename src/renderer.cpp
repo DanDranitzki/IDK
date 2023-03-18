@@ -4,6 +4,8 @@
 #include <headers/shaderProgram.h>
 #include <headers/renderer.h>
 #include <headers/texture.h>
+#include <headers/texturedModel.h>
+#include <headers/entity.h>
 
 void Renderer::init(Shader shader){
     shader.useShader();
@@ -15,7 +17,10 @@ void Renderer::prepareRender(){
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void Renderer::render(RawModel model, Texture texture, Shader shader){
+void Renderer::render(Entity entity, Shader shader){
+    TexturedModel texturedModel = entity.getTexturedModel();
+    RawModel model = texturedModel.getModel();
+    Texture texture = texturedModel.getTexture();
     glBindVertexArray(model.getVAO());
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);

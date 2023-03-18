@@ -6,6 +6,10 @@
 #include <headers/shaderProgram.h>
 #include <headers/renderer.h>
 #include <headers/texture.h>
+#include <headers/texturedModel.h>
+#include <headers/entity.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 const unsigned int SCR_WIDTH = 1280;
 const unsigned int SCR_HEIGHT = 720;
@@ -38,6 +42,9 @@ int main(){
 
 	Texture texture("res/textures/test.png");
 
+	TexturedModel texturedModel(&model, &texture);
+	Entity entity(&texturedModel, &glm::vec4(1.0f, 0.0f, 0.0f, 0.0f));
+
 	Shader shader("res/shaders/vertexShader.glsl", "res/shaders/fragmentShader.glsl");
 
 	Renderer renderer;
@@ -48,7 +55,7 @@ int main(){
 
 		//rendering here
 		renderer.prepareRender();
-		renderer.render(model, texture, shader);
+		renderer.render(entity, shader);
 
 		glfwSwapBuffers(window.getWindow());
 		glfwPollEvents();
